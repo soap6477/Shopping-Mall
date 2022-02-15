@@ -1,0 +1,64 @@
+  table {
+    width: 730px;
+    border: 0.5px solid gray;
+    border-collapse: collapse;
+  }
+ tr {
+   font-size: 30px;
+    border-bottom: 0.5px solid gray;
+
+  }
+  td {
+      padding: 15px;
+  }
+  .product_view{
+    padding: 30px 0 0 670px; 
+    box-sizing: border-box;
+    position: relative;
+    width: 962px;
+  }
+  .product_view .img{
+    
+    position: absolute;
+    left:50px;
+    top:30px;
+  }
+  .product_view p{
+    padding-top: 10px;
+    font-size: 13px;
+  }
+
+  .product_view  p.font1{
+    font-size: 20px;
+  }
+
+  .product_view .sum{
+   
+    float:right;
+    font-size: 20px;
+  }
+
+  .product_view  span{
+    font-size: 15px;
+  }
+
+
+  .product_view .btns{
+    padding-top: 20px;
+    text-align: center;
+  }
+  .product_view .btns > a{
+      display: inline-block;
+      width: 300px;
+      height: 42px;
+      font-size: 18px;
+      color:#fff;
+      border-radius: 5px;
+      line-height: 42px;
+  }
+  .product_view .btns > a.btn1{
+    background-color: #666;
+  }
+    .product_view .btns > a.btn2{
+    background-color: red;
+  }

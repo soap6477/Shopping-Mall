@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width", initial-scale="1">
+	<title>배송 요청사항</title>
+    <link rel="stylesheet" href="/css/paystyles.css">
+    <script type="text/javascript">
+      function getPlaceOutput() {
+  
+        const placeNodeList
+        = document.getElementsByName('place');
+        
+        placeNodeList.forEach((node) => {
+          if(node.checked)  {
+            opener.document.getElementById('place').innerText
+              = node.value;
+          }
+        }) 
+        self.close();
+      }
+      </script> 
+</head>
+<body style="background-color: white;">
+    <div class = place_view>
+        <h4>배송 요청사항</h4>
+        <hr>
+        <div class= place_form>
+            <form>
+                <table id=stock_table>
+                    <tr><td><label><input type="radio" name="place" class="radio1" value="문 앞" onClick="delete_row()"checked> 문 앞</label><br></td></tr>
+                    <tr><td> <label><input type="radio" name="place" class="radio1" value="직접 받고 부재 시 문 앞"onClick="delete_row()"> 직접 받고 부재 시 문 앞</label><br></td></tr>
+                    <tr><td><label><input type="radio" name="place" class="radio1" value="경비실"onClick="delete_row()"> 경비실</label><br></td></tr>
+                    <tr><td><label><input type="radio" name="place" class="radio1" value="기타사항"onClick="add_row()" > 기타사항</label><br> </td></tr>
+                    <tbody id = "tblShow"></tbody>
+                </table>              
+            </form> 
+            <div class=btn>
+                <a href="#a" class="btn" id="place" onClick="getPlaceOutput()">동의하고 저장하기</a>
+            </div>
+        </div>
+    </div> 
+</body>
+<script>
+    function add_row() {
+      var my_tbody = document.getElementById('tblShow');
+      // var row = my_tbody.insertRow(0); // 상단에 추가
+      if(my_tbody.rows.length == 0){
+        var row = my_tbody.insertRow( my_tbody.rows.length ); // 하단에 추가
+        var cell1 = row.insertCell(0);
+        cell1.innerHTML = "<p>소화전/EPS/TPS 등은 안전상 보관 불가</p><input type='text' placeholder='장소만 입력(필수)' style='width:100%;border-radius: 0; font-size: 14px;'>";
+      } else {}
+    }
+  
+    function delete_row() {
+      var my_tbody = document.getElementById('tblShow');
+      if (my_tbody.rows.length < 1) return;
+      // my_tbody.deleteRow(0); // 상단부터 삭제
+      my_tbody.deleteRow( my_tbody.rows.length-1 ); // 하단부터 삭제
+    }
+  </script>
+</html>

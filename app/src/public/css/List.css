@@ -1,0 +1,49 @@
+ul{
+    list-style:none;
+}
+.clear {
+    clear: both;
+}
+.items{
+    width: 232px;
+    float: left;
+    margin: 30px 0 0 25px;
+}
+.items .name{
+    font-weight: bold;
+    color: black;
+    margin-top:20px;
+}
+.items .type{
+    font-weight: bold;
+    color: black;
+    margin-top:8px;
+}
+.items .price{
+    font-weight: bold;
+    color: black;
+    margin-top: 8px;
+}
+.items .price span{
+    color: brown;
+}
+.items .info{
+    font-size: 12px;
+    margin-top: 20px;
+    line-height: 130%;
+}
+.items .review{
+    font-size: 12px;
+    margin-top: 25px;
+}
+#content_box h3 {
+    float: left;
+    margin-left: 500px;
+}
+#content_box p {
+    float: right;
+}
+.box {
+    width: 1320px;
+    margin: 50px auto;
+}

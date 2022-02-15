@@ -1,0 +1,115 @@
+<!-- jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<!-- iamport.payment.js -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width", initial-scale="1">
+	<title a href="/">상품 주문하기</title>
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+
+    <script type="text/javascript" >
+        function showPopup() { 
+            window.open("PLACE", "a", "width=470, height=620, left=100, top=50"); 
+        }        
+    </script> 
+</head>
+<body style="background-color: white;">
+    <div class = pay_view>
+    
+        <h1>주문/결제</h1>
+        <hr>
+        <h3>구매자 정보</h2>
+        <table>
+            <colgroup>
+                <col>
+                <col>
+                </colgroup>
+                <tr>
+                    <th>이름</th>
+                    <td><input id="id" value=<%=sessionid%> readonly></td>
+                </tr>
+                <tr>
+                    <th>이메일</th>
+                    <td><input id="email" readonly></td>
+                </tr>
+                <tr>
+                    <th>휴대폰 번호</th>
+                    <td><input id="phone" type="text"><span style="margin-left: 30px;">쿠폰/티켓정보는 구매한 분의 번호로 전송됩니다.</span></td>
+                </tr>
+             
+        </table>
+        <br>
+        <h3>받는사람 정보</h4>
+        <table>
+            <colgroup>
+                <col>
+                <col>
+                </colgroup>
+                <tr>
+                    <th>이름</th>
+                    <td><input id="name" type="text"></td>
+                </tr>
+                <tr>
+                    <th>배송주소</th>
+                    <td><input id="address" type="text"></td>
+                </tr>
+                <tr>
+                    <th>상세주소</th>
+                    <td><input id="address_detail" type="text"></td>
+                </tr>
+                <tr>
+                    <th>연락처</th>
+                    <td><input id="phone2" type="text"></td>
+                </tr>
+                <tr>
+                    <th>배송 요청사항</th>
+                    <td><span id="place" style="margin-left:5px; margin-right:30px;">문 앞</span>
+                    <input type="button" name="placebtn" value="변경" onclick="showPopup();"></td>
+                </tr>
+        </table>
+        <br>
+        <h3>결제정보</h4>
+        <table>
+            <colgroup>
+                <col>
+                <col>
+                </colgroup>
+                <tr>
+                    <th>총상품가격</th>
+                    <td><input id="p_price" style="text-align: right; border:0 solid black" size=5 readonly></span>원</td>
+                </tr>
+                <tr>
+                    <th>배송비</th>
+                    <td><input id=d_price style="text-align: right; border:0 solid black"" size=5 readonly></input>원</td>
+                </tr>
+                <tr>
+                    <th>총결제금액</th>
+                    <td><input id=t_price style="text-align: right; border:0 solid black"" size=5 readonly>원</td>
+                </tr>
+        </table>
+        <div class=btn>
+            <td>
+                <button id="check_module" type="button" href="#a" class="btn1">주문신청</td>
+        </div>
+    </div>
+    <footer style="background-color: #000000; color: #ffffff; margin:auto">
+		<div class="container">
+			<br>
+			<div class="row">
+				<div class="col-sm-2" style="text-align: center;"><h5>Copyright &copy; 2021</h5><h5>어떻게하조</h5></div>
+			</div>
+		</div>
+	</footer>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+    <script language="javascript" src="js/paypage.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>고객의견</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+</head>
+<body>
+<div class="container">
+    <h2>고객의견</h2>
+    <a class="navbar-form navbar-right" href="/">뒤로</a>
+    <br><br><br>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>날짜</th>
+            <th>조회수</th>
+        </tr>
+    </thead>
+    <tbody>
+    <% data.forEach(function (item, index){ %>
+        <tr>
+            <td><%=item.content_id%></td>
+            <td><a href='/boarddetail/<%= item.content_id %>'><%=item.title%></a></td>
+            <td><%=item.user_id%></td>
+            <td><%=item.date%></td>
+            <td><%=item.hit%></td>
+        </tr>
+        <% })%>
+    </tbody>
+</table>
+<hr />
+<a href="/boardWrite" class="btn btn-default pull-right">글쓰기</a>
+
+<div class="text-center">
+    <ul class="pagination">
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+    </ul>
+</div>
+</div>
+
+
+<script src="/js/bootstrap.js"></script>
+</body>
+</html>

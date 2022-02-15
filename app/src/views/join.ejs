@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>회원가입</title>
+  <script language="javascript" src="js/register.js" defer>
+  </script>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/earlyaccess/notosanskr.css" rel="stylesheet">
+</head>
+<body>
+  <center><b><font size="6" color="white">회원가입</font></b></center>
+  <div class="login-form">
+    <form name = "join" onsubmit="return vaildate();" method="post">
+      <input type="text" id="username" class="text-field" placeholder="이름">
+      <input type="text" id="userid" class="text-field" placeholder="아이디">
+      <input type="button" id="ckid" value="중복체크">
+      <input type="password" id="psword" class="text-field" placeholder="비밀번호">
+      <input type="password" id="checkpsword" class="text-field" placeholder="비밀번호재입력">
+      성별:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="radio" name="gender" class="gender" value="male" checked>남
+      <input type="radio" name="gender" value="female" checked>여<br>
+      <label for="birthday">생년월일:&nbsp&nbsp&nbsp&nbsp</label><input type="date" name="birthday" id="date" class="text-field"><br>
+      <input type="email" id="email" class="text-field" placeholder="email">
+      <input type="text" onkeypress="return checkNumber(event)" id = "tel" name="telephone" class="text-field" placeholder="핸드폰"> 
+      <input type="text" id="address" class="text-field" placeholder="주소">
+      <p id="button" style='text-align:center' value='회원가입' class="submit-btn"> 회원가입 </p>
+    </form>
+  </div>
+</body>
+</html>

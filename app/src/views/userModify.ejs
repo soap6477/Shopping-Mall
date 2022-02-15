@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>회원정보수정</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/earlyaccess/notosanskr.css" rel="stylesheet">
+</head>
+<body style="background-color: #ffffff">
+    <nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> 
+					<span class="sr-only"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">쇼핑몰</a>
+			</div>
+			<div class="collapsed navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">제품<span class="sr-only"></span></a></li>
+					<li><a href="#">TBD</a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle = "dropdown" role = "button" aria-haspopup="true" aria-expanded = "false">카테고리<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">의류</a></li>
+							<li><a href="#">가정제품</a></li>
+							<li><a href="#">전자기기</a></li>
+						</ul>
+					</li>
+				</ul>
+
+				<form class="navbar-form navbar-left">
+					<div calss = "form-group">
+						<input type="text" class="form-control" placeholder="내용을 입력하시오">
+						<button type="submit" class="btn btn-default"> 검색 </button>
+					</div>
+					
+				</form>
+			</div>
+		</div>
+	</nav>
+	
+	
+
+	</nav>
+<center><b><font size="6" color="black">회원정보수정</font></b></center>
+
+<div style="background-color: #ffffff" div class="Modify-form">
+<div class="row">
+  <div class="col-sm-12">
+	  <div class="col-sm-2"></div>
+		  <div class="col-sm-9">
+			  <form>
+			  <table class="table table-striped">
+				<tr>
+				  <td>ID</td>
+				  <td>
+					  <input type="text" id="id" value=<%=sessionid%> class="text-field2" disabled>
+				  </td>
+				</tr>
+				<tr>
+					<td>Name</td>
+					<td>
+						<input type="text" id="name" class="text-field2" disabled>
+					</td>
+				</tr>
+				<tr>
+					<td>Password</td>
+					<td>
+						<input type="password" id="psword" class="text-field2">
+					</td>
+				  </tr>
+				<tr>
+					<td>Email</td>
+					<td>
+					<input type="email" id="email" class="text-field2">
+					</td>
+				</tr>
+				<tr>
+					<td>Tel</td>
+					<td>
+						<input type="text" id="tel" class="text-field2"> 
+					</td>
+				</tr>
+				<tr>
+					<td>Address</td>
+					<td>
+						<input type="text" id="address" class="text-field2">
+					</td>
+				</tr>
+			  <tr>
+				  <td colspan="2" class="text-center">
+				   <input type="button" id="modifybutton" value="회원 수정하기" class="btn btn-success">
+				   &nbsp;
+				   <input type="button" id="withdrawlbutton" value="회원 탈퇴" class="btn btn-success">
+				  </td>
+			  </tr>
+			  </table>
+		  </form>   
+		  </div>
+  </div> <!-- col-sm-12 -->
+</div><!-- row -->
+</div> <!-- container end-->
+	
+	<footer style="background-color: #000000; color: #ffffff">
+		<div class="container">
+			<br>
+			<div class="row">
+				<div class="col-sm-2" style="text-align: center;"><h5>Copyright &copy; 2021</h5><h5>어떻게하조</h5></div>
+			</div>
+		</div>
+	</footer>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="js/bootstrap.js"> </script>
+	<script language="javascript" src="js/modify.js" defer> </script>
+</body>
+</html>

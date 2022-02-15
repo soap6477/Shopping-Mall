@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width" , initial-scale="1">
+  <title></title>
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/detail.css">
+  <script src="/js/detail.js" defer></script> 
+  
+  <script language="JavaScript">
+    function numberchange(type) {
+      const userid = document.querySelector("#id");
+      const amount= document.getElementById('amount');
+      var sell = document.getElementById("sell");
+      var price = document.getElementById("price").innerText;
+      var name = document.getElementById("name").innerText;
+      var id = document.getElementById("id").innerText;
+      var image = document.getElementById("image").innerText;
+
+      var regex = /[^0-9]/g;
+      var price = price.replace(regex, "");
+     if(type == 'p'){
+        amount.value++;
+     }else{
+       if(amount.value <= 0){
+  
+       } else{
+          amount.value--;
+       }
+     }  
+      var sell_price = parseInt(price) * parseInt(amount.value);
+      sell.innerText = "총 상품 금액: " + sell_price;
+      sessionStorage.setItem("price", parseInt(price)); // 원본 가격
+      sessionStorage.setItem("sellprice", parseInt(sell_price)); // 판매 가격
+      sessionStorage.setItem("amount", parseInt(amount.value));
+      sessionStorage.setItem("name", name);
+      sessionStorage.setItem("id", id);
+      sessionStorage.setItem("image", image);
+      p_name.value = sessionStorage.getItem("name"); // 상품 이름 세션
+      p_id.value = sessionStorage.getItem("id");
+      const p_image = sessionStorage.getItem("image");
+      p_price.value = sessionStorage.getItem("price"); // cart와 detail에서 세션 이름을 같게 해서 덮어 씌우는 형태로 세션 저장
+      p_sell.value = sessionStorage.getItem("sellprice");
+      p_cnt.value = sessionStorage.getItem("amount");
+    }
+  </script>
+</head>
+<body>
+  <%if(sessionuid==1){ %>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+            data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">쇼핑몰</a>
+        </div>
+        <div class="collapsed navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <!-- <li class="active"><a href="#">제품<span class="sr-only"></span></a></li> -->
+            <li><a href="itemMagement">상품 관리</a></li>
+            <!-- <li class="dropdown">
+  						<a href="#" class="dropdown-toggle" data-toggle = "dropdown" role = "button" aria-haspopup="true" aria-expanded = "false">카테고리<span class="caret"></span></a>
+  						<ul class="dropdown-menu">
+  							<li><a href="#">의류</a></li>
+  							<li><a href="#">가정제품</a></li>
+  							<li><a href="#">전자기기</a></li>
+  						</ul>
+  					</li> -->
+          </ul>
+  
+          <form action="/searchList" class="navbar-form navbar-left" method="post">
+            <div calss = "form-group">
+              <input name="searchtext" type="text" class="form-control" placeholder="내용을 입력하시오">
+              <button type="submit" class="btn btn-default"> 검색 </button>
+            </div>
+          </form>
+          <% } <!-- 일반 사용자 페이지 -->
+            else{
+            %>
+            <nav class="navbar navbar-default">
+              <div class="container-fluid">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" href="/">쇼핑몰</a>
+                </div>
+                <div class="collapsed navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav">
+                    <li class="active"><a href="/#">제품<span class="sr-only"></span></a></li>
+                    <li><a href="/board">고객의견</a></li>
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                        aria-expanded="false">카테고리<span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="/clothesList">의류</a></li>
+                        <li><a href="/machineList">가정제품</a></li>
+                        <li><a href="/deviceList">전자기기</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                  <form action="/searchList" class="navbar-form navbar-left" method="post">
+                    <div calss = "form-group">
+                      <input name="searchtext" type="text" class="form-control" placeholder="내용을 입력하시오">
+                      <button type="submit" class="btn btn-default"> 검색 </button>
+                    </div>
+                  </form>
+                  <% } %>
+                    <%if(sessionid){ %>
+                      <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                            aria-expended="false"><span class="caret"></span>
+                            <%=sessionid%>
+                          </a>
+                          <ul class="dropdown-menu">
+                            <li><a href="cart">장바구니</a></li>
+                            <li><a href="userModify">회원정보 수정</a></li>
+                            <li><a href="logout">로그아웃</a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                      <% } else{ %>
+                        <ul class="nav navbar-nav navbar-right">
+                          <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                              aria-expended="false">접속하기<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                              <li><a href="Login">로그인</a></li>
+                              <li><a href="Join">회원가입</a></li>
+                            </ul>
+                          </li>
+                        </ul>
+                        <% } %>
+                </div>
+              </div>
+            </nav>
+   <div class="product_view">
+     <table>
+        <tr><td><div id="name"><%=data?.product_name%></div></td> </tr>
+        <tr style="display:none"><td><div id="id"><%=data?.product_id%></div></td> </tr>
+        <tr><td><div id="price"><%=data?.price%>원</div></td></tr>
+        <tr><td>
+            <span class="badge bg-dark"><%=data?.product_type%></span>
+          <p>배송비 2,500원 | 도서산간(제주도) 배송비 추가 5,000원 | 택배배송 | 5일 이내 출고 (주말,공휴일 제외)</p>
+        </td></tr>
+        <tr><td>
+          <div style="float:left">
+            <p class="font1">구매 수량</p>
+          </div>
+      <div class="sum">
+        <form>
+            <button type="button" onclick="numberchange('p');">+</button>
+            <input type="text" id="amount" value="0" readonly="readonly" style="text-align:center" />
+            <button type="button" onclick="numberchange('m');">-</button>
+        </form>
+      </div>
+      </td></tr>
+        <tr><td><p id="sell" class="font1">총 상품 금액: </p>
+          <div class="btns">
+          <form>
+            <input type="hidden" id="userid" value=<%=sessionid%>>
+            <input type="hidden" id="p_id" value=p_id.value>
+            <input type="hidden"id="p_price" value=p_price.value>
+            <input type="hidden"id="p_sell" value=p_sell.value>
+            <input type="hidden"id="p_cnt" value=p_cnt.value>
+            <input type="hidden"id="p_name" value=p_name.value>
+            <input type="hidden"id="p_image" value=<%=data?.image%>>
+            <input type="hidden"id="p_image" value=<%=data?.image%>>
+            <input id="cartbtn" type="button" value="장바구니담기" class="btn1">
+            </form>
+            <a href="/paypage" class="btn2">주문하기
+            </a>
+          </div>
+        <td></tr>
+     </table>
+    
+       <div class="img">
+       <img id="image" src="<%=data?.image%>" alt="" 
+       width="600px" height="500px;">
+     </div>
+   </div>
+</body>
+</html>

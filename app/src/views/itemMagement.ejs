@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width", initial-scale="1">
+	<title></title>
+	<link rel="stylesheet" href="/css/bootstrap.css">
+	<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>상품테이블</h2>
+        
+        <a href="/insert">추가하기</a>
+        <a class="navbar-form navbar-right" href="/">뒤로</a>
+        <br>
+        <br>
+        <p>상품테이블 목록입니다.</p>
+        
+        <table class="table table-striped">
+        <thead>
+        <tr>
+        <th>번호</th>
+        <th>이미지</th>
+        <th>상품명</th>
+        <th>분류</th>
+        <th>가격</th>
+        <th>삭제</th>
+        <th>수정</th>
+        </tr>
+        </thead>
+        <tbody>
+        
+        <% data.forEach(function (item, index){ %>
+        <tr>
+        <td>
+        <%=item.product_id%>
+        </td>
+        <td>
+            <img src="<%= item.image %>" width="50" height="50" />
+        </td>
+        <td>
+        <a href='/item/<%= item.product_id %>'><%=item.product_name%></a>
+        </td>
+        <td>
+        <%=item.product_type%>
+        </td>
+        <td>
+            <%=item.price%>
+        </td>
+        <td>
+        <a href="/delete/<%= item.product_id %>">삭제</a>
+        </td>
+        <td>
+        <a href="/update/<%= item.product_id %>">수정</a>
+        </td>
+        </tr>
+        <% })%>
+        </tbody>
+        </table>
+        </div>
+        
+        
+        <br>
+        <br>
+        
+        
+        <div class="container">
+        <ul class="pager">
+        
+        
+        
+        <%
+        var curSet = pasing.curSet
+        var endPage = pasing.endPage
+        var startPage = pasing.startPage
+        var totalSet = pasing.totalSet
+        var totalPage = pasing.totalPage
+        var page_list_size = pasing.page_list_size
+        var page_size = pasing.page_size
+        var curPage = pasing.curPage
+        %>
+        
+        
+        <%
+        if(curSet > 1){
+        %>
+        
+        <li value=(startPage -1) class="previous">
+        <a href='/pasing/<%= ( startPage - 1) %>'>이전페이지</a>
+        </li>
+        
+        <%
+        }
+        %>
+        
+        
+        <%
+        for(var i = startPage; i <= endPage; i++){
+        if(i > totalPage){break;}
+        
+        if(i == curPage){
+        %>
+        <li value=<%= i %> class='' >
+        <a href='/pasing/<%= i %>'>
+        <%= i %>
+        </a>
+        </li>
+        
+        <%
+        }else{
+        %>
+        
+        <li value=<%= i %> class='active' >
+        <a href='/pasing/<%= i %>'>
+        <%= i %>
+        </a>
+        </li>
+        
+        
+        <%
+        }
+        %>
+        
+        <%
+        }
+        %>
+        
+        <%
+        if(curSet < totalSet){
+        %>
+        <li value=( endPage + 1) class="next">
+        <a href='/pasing/<%= ( endPage + 1) %>'>다음페이지</a>
+        </li>
+        <%
+        }
+        %>
+        
+        </ul>
+        </div>
+        
+        <br>
+        <br>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="js/bootstrap.js">
+	</script>
+</body>
+</html>

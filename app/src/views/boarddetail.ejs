@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/content.css">
+    < <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+        <script src=" https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/lang/summernote-ko-KR.min.js"></script>
+
+        <title>글쓰기</title>
+        <style>
+            body {
+                padding-top: 80px;
+            }
+        </style>
+        <script>
+            $(document).ready(function () {
+                
+            });
+        </script>
+</head>
+
+<body>
+    <div class="container">
+        <table>
+           <tr>
+               <th>제목</th>
+               <td><%=data.title%></td>
+               <th>조회수</th>
+               <td><%=data.hit%></td>
+           </tr>
+           <tr>
+               <th>작성자</th>
+               <td><%=data.user_id%></td>
+               <th>작성일</th>
+               <td><%=data.date%></td>
+           </tr>
+           <tr height="200" valign="top" >
+                <td colspan="4"><%-data.content%></td>
+           </tr>
+        </table>
+       
+        <a href="/boarddel/<%=data.content_id%>" class="btn btn-default pull-right">글삭제</a>
+        <a href="/boardUpdate/<%=data.content_id%>" class="btn btn-default pull-right">글수정</a>
+    </div>
+</body>
+
+</html>

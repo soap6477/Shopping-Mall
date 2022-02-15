@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width" , initial-scale="1">
+    <title></title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/List.css">
+</head>
+
+<body>
+    <!-- 관리자 계정 페이지 -->
+    <%if(sessionuid==1){ %>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">쇼핑몰</a>
+                </div>
+                <div class="collapsed navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <!-- <li class="active"><a href="#">제품<span class="sr-only"></span></a></li> -->
+                        <li><a href="itemMagement">상품 관리</a></li>
+                        <!-- <li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle = "dropdown" role = "button" aria-haspopup="true" aria-expanded = "false">카테고리<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">의류</a></li>
+							<li><a href="#">가정제품</a></li>
+							<li><a href="#">전자기기</a></li>
+						</ul>
+					</li> -->
+                    </ul>
+
+                    <form action="/searchList" class="navbar-form navbar-left" method="post">
+                        <div calss = "form-group">
+                            <input name="searchtext" type="text" class="form-control" placeholder="내용을 입력하시오">
+                            <button type="submit" class="btn btn-default"> 검색 </button>
+                        </div>
+                    </form>
+                    <% } <!-- 일반 사용자 페이지 -->
+                        else{
+                        %>
+                        <nav class="navbar navbar-default">
+                            <div class="container-fluid">
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                        <span class="sr-only"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                    <a class="navbar-brand" href="/">쇼핑몰</a>
+                                </div>
+                                <div class="collapsed navbar-collapse" id="bs-example-navbar-collapse-1">
+                                    <ul class="nav navbar-nav">
+                                        <li class="active"><a href="#">제품<span class="sr-only"></span></a></li>
+                                        <li><a href="#">TBD</a></li>
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                                aria-haspopup="true" aria-expanded="false">카테고리<span
+                                                    class="caret"></span></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="/clothesList">의류</a></li>
+                                                <li><a href="/machineList">가정제품</a></li>
+                                                <li><a href="/deviceList">전자기기</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                    <form action="/searchList" class="navbar-form navbar-left" method="post">
+                                        <div calss = "form-group">
+                                            <input name="searchtext" type="text" class="form-control" placeholder="내용을 입력하시오">
+                                            <button type="submit" class="btn btn-default"> 검색 </button>
+                                        </div>
+                                    </form>
+                                    <% } %>
+                                        <%if(sessionid){ %>
+                                            <ul class="nav navbar-nav navbar-right">
+                                                <li class="dropdown">
+                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                                                        role="button" aria-haspopup="true" aria-expended="false"><span
+                                                            class="caret"></span>
+                                                        <%=sessionid%>
+                                                    </a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="cart">장바구니</a></li>
+                                                        <li><a href="userModify">회원정보 수정</a></li>
+                                                        <li><a href="logout">로그아웃</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                            <% } else{ %>
+                                                <ul class="nav navbar-nav navbar-right">
+                                                    <li class="dropdown">
+                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                                                            role="button" aria-haspopup="true"
+                                                            aria-expended="false">접속하기<span class="caret"></span></a>
+                                                        <ul class="dropdown-menu">
+                                                            <li><a href="Login">로그인</a></li>
+                                                            <li><a href="Join">회원가입</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                                <% } %>
+                                </div>
+                            </div>
+                        </nav>
+
+
+
+        </nav>
+       
+        <section id="content_box">
+            <div class="box">
+                <div class="container">
+                <h3>전체 상품</h3>
+                <p>판매자 추천순 | 인기도순 | 평점높은순 | 최신등록순</p>
+                <div class="clear"></div>
+                <% data.forEach(function (item, index){ %>
+                <ul class="items">
+                    <li><img src="<%= item.image %>"width="232" height="232"></li> <!-- 상품 사진 -->
+                    <a href="/detail/<%= item.product_id%>"><li class="name"><%=item.product_name%></li></a> <!-- 상품 번호, 상품 이름 -->
+                    <li class="price"><%=item.price%>원 <span>24%</span></li> <!-- 상품 가격 -->
+                    <script>
+                        function moneyformat(){
+                            var money = document.getElementsByClassName("price").value;
+                            console.log(money.value);
+                        }
+                        moneyformat();
+                    </script>
+                    <li class="info">&quot; 핵 인싸... &quot; 이번 여름...</li>
+                    <li class="review">리뷰<span>2</span> 평점 . <span>4.5/5</span></li>
+                </ul>
+                <% })%>
+            </div>
+            </div>
+        </section>
+        
+        
+        <div class="container">
+            <ul class="pager">
+        
+        
+        
+                <% var curSet=pasing.curSet
+                   var endPage=pasing.endPage
+                   var startPage=pasing.startPage 
+                   var totalSet=pasing.totalSet 
+                   var totalPage=pasing.totalPage 
+                   var page_list_size=pasing.page_list_size 
+                   var page_size=pasing.page_size 
+                   var curPage=pasing.curPage %>
+        
+        
+                    <% if(curSet> 1){
+                        %>
+        
+                        <li value=(startPage -1) class="previous">
+                            <a href='/pasing_TYPE/의류/<%= ( startPage - 1) %>'>이전페이지</a>
+                        </li>
+        
+                        <% } %>
+        
+        
+                            <% for(var i=startPage; i <=endPage; i++){ if(i> totalPage){break;}
+        
+                                if(i == curPage){
+                                %>
+                                <li value=<%=i %> class='' >
+                                    <a href='/pasing_TYPE/의류/<%= i %>'>
+                                        <%= i %>
+                                    </a>
+                                </li>
+        
+                                <% }else{ %>
+        
+                                    <li value=<%=i %> class='active' >
+                                        <a href='/pasing_TYPE/의류/<%= i %>'>
+                                            <%= i %>
+                                        </a>
+                                    </li>
+        
+        
+                                    <% } %>
+        
+                                        <% } %>
+        
+                                            <% if(curSet < totalSet){ %>
+                                                <li value=( endPage + 1) class="next">
+                                                    <a href='/pasing_TYPE/의류/<%= ( endPage + 1) %>'>다음페이지</a>
+                                                </li>
+                                                <% } %>
+        
+            </ul>
+        </div>
+        
+        <br>
+        <br>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="js/bootstrap.js">
+
+        </script>
+
+       <footer style="background-color: #000000; color: #ffffff; margin-top: 100px">
+		<div class="container">
+			<br>
+			<div class="row">
+				<div class="col-sm-2" style="text-align: center;"><h5>Copyright &copy; 2021</h5><h5>어떻게하조</h5></div>
+			</div>
+		</div>
+	</footer>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="js/bootstrap.js">
+		
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width", initial-scale="1">
+	<title></title>
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/List.css">
+</head>
+<body>
+	<!-- 관리자 계정 페이지 -->
+	<%if(sessionuid==1){
+		%>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> 
+					<span class="sr-only"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">쇼핑몰</a>
+			</div>
+			<div class="collapsed navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<!-- <li class="active"><a href="#">제품<span class="sr-only"></span></a></li> -->
+					<li><a href="itemMagement">상품 관리</a></li>
+					<li><a href="/board">고객의견</a></li>
+					<!-- <li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle = "dropdown" role = "button" aria-haspopup="true" aria-expanded = "false">카테고리<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">의류</a></li>
+							<li><a href="#">가정제품</a></li>
+							<li><a href="#">전자기기</a></li>
+						</ul>
+					</li> -->
+				</ul>
+
+				<form action="/searchList" class="navbar-form navbar-left" method="post">
+					<div calss = "form-group">
+						<input name="searchtext" type="text" class="form-control" placeholder="내용을 입력하시오">
+						<button type="submit" class="btn btn-default"> 검색 </button>
+					</div>
+				</form>
+		<%
+	}
+	<!-- 일반 사용자 페이지 -->
+	else{
+		%>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> 
+					<span class="sr-only"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">쇼핑몰</a>
+			</div>
+			<div class="collapsed navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">제품<span class="sr-only"></span></a></li>
+					<li><a href="/board">고객의견</a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle = "dropdown" role = "button" aria-haspopup="true" aria-expanded = "false">카테고리<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="/clothesList">의류</a></li>
+							<li><a href="/machineList">가전제품</a></li>
+							<li><a href="/deviceList">전자기기</a></li>
+						</ul>
+					</li>
+				</ul>
+				<form action="/searchList" class="navbar-form navbar-left" method="post">
+					<div calss = "form-group">
+						<input name="searchtext" type="text" class="form-control" placeholder="내용을 입력하시오">
+						<button type="submit" class="btn btn-default"> 검색 </button>
+					</div>
+				</form>
+				<%
+				}
+				%>
+				<%if(sessionid){
+					%>
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expended="false"><span class="caret"></span><%=sessionid%></a>
+							<ul class="dropdown-menu">
+								<li><a href="cart">장바구니</a></li>
+								<li><a href="userModify">회원정보 수정</a></li>
+								<li><a href="logout">로그아웃</a></li>
+							</ul>
+						</li>
+					</ul>
+					<%
+				}
+				else{
+					%>
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expended="false">접속하기<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="Login">로그인</a></li>
+								<li><a href="Join">회원가입</a></li>	
+							</ul>
+						</li>
+					</ul>
+				<%
+				}
+				%>
+			</div>
+		</div>
+	</nav>
+	
+	</nav>
+	<div class="container">
+		<div class="jumbotron">
+			<h1 class="text-center">쇼핑몰</h1>
+			<p class="text-center">프로젝트 쇼핑몰</p>
+		</div>
+	</div>
+
+	<table width="1800">
+		<tr>
+		<% data.forEach(function (item){ %>
+			<td>
+                <ul class="items">
+                    <li><a href="/detail/<%= item.product_id%>"><img src="<%= item.image %>" width="300" height="300"></a></li> <!-- 상품 번호, 상품 사진 -->
+                    <li class="name"> <%=item.product_name%></li> <!-- 상품 이름 -->
+					<li class="type"> <%=item.product_type%></li> <!-- 상품 타입 -->
+                    <li class="price"> <%=item.price%> 원</li> <!-- 상품 가격 -->
+					<script>
+                        function moneyformat(){
+                            var money = document.getElementsByClassName("price").value;
+                        }
+                        moneyformat();
+                    </script>
+                </ul>
+			</td>
+		<% })%>
+		<tr>
+	</table>
+
+	<footer style="background-color: #000000; color: #ffffff">
+		<div class="container">
+			<br>
+			<div class="row">
+				<div class="col-sm-2" style="text-align: center;"><h5>Copyright &copy; 2021</h5><h5>어떻게하조</h5></div>
+			</div>
+		</div>
+	</footer>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+</body>
+</html>
